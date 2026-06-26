@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fuldastay – Direkt buchen in Fulda &amp; Birstein</title>
+<meta name="description" content="Stilvolle Unterkünfte in Fulda und im Vogelsberg. Direkt beim Gastgeber buchen – ohne Portalgebühren, mit sofortiger Bestätigung und persönlichem Kontakt." />
+
+<!-- ===========================================================
+     FONTS (CDN). DSGVO-Hinweis: Für volle DSGVO-Konformität
+     kannst du die Schriften später lokal hosten statt über Google.
+     =========================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1b2a1f;
+    --green:#2f4a3a;
+    --green-deep:#21372a;
+    --paper:#eceee6;
+    --paper-2:#f6f7f2;
+    --card:#fbfbf6;
+    --brass:#a9854a;
+    --brass-light:#d6bb83;
+    --sand:#cdb088;
+    --muted:#586655;
+    --line:rgba(27,42,31,.14);
+    --shadow:0 1px 2px rgba(27,42,31,.06),0 12px 32px -12px rgba(27,42,31,.18);
+
+    --display:"Fraunces",Georgia,serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+
+    --wrap:1140px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;letter-spacing:-.01em;margin:0;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--brass);display:inline-flex;align-items:center;gap:.6em;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--brass);opacity:.7;}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.55em;
+    font-family:var(--body);font-weight:600;font-size:15px;letter-spacing:.01em;
+    padding:.85em 1.5em;border-radius:999px;border:1px solid transparent;cursor:pointer;
+    transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
+  }
+  .btn-primary{background:var(--brass);color:#fff;}
+  .btn-primary:hover{background:#946f38;transform:translateY(-1px);}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.45);color:#fff;}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+  .btn-outline{background:transparent;border-color:var(--line);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--ink);transform:translateY(-1px);}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(236,238,230,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:.6em;font-family:var(--display);font-size:21px;font-weight:600;letter-spacing:-.01em;}
+  .brand .key{
+    width:26px;height:26px;border-radius:7px;
+    background:linear-gradient(150deg,var(--brass-light),var(--brass));
+    display:grid;place-items:center;color:#3a2c12;font-family:var(--body);font-weight:700;font-size:13px;
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.5),inset 0 -1px 2px rgba(0,0,0,.2);
+  }
+  .nav-links{display:flex;align-items:center;gap:30px;}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--muted);transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.2s;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(120% 90% at 80% -10%,rgba(214,187,131,.22),transparent 60%),
+      linear-gradient(160deg,var(--green) 0%,var(--green-deep) 100%);
+    color:var(--paper-2);position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-120px;bottom:-160px;width:520px;height:520px;
+    border:1px solid rgba(214,187,131,.18);border-radius:50%;pointer-events:none;
+  }
+  .hero-inner{padding:88px 0 96px;max-width:760px;position:relative;z-index:2;}
+  .hero h1{font-size:clamp(40px,6.2vw,68px);color:#fff;margin:22px 0 0;}
+  .hero h1 em{font-style:italic;color:var(--brass-light);}
+  .hero .lead{font-size:clamp(17px,2.1vw,20px);color:rgba(246,247,242,.82);margin:22px 0 34px;max-width:560px;}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;}
+  .hero-trust{
+    display:flex;flex-wrap:wrap;gap:26px;margin-top:46px;
+    padding-top:26px;border-top:1px solid rgba(246,247,242,.16);
+  }
+  .hero-trust div{font-size:14px;color:rgba(246,247,242,.78);max-width:220px;}
+  .hero-trust b{display:block;font-family:var(--display);font-size:24px;color:#fff;font-weight:600;margin-bottom:2px;}
+
+  /* ---------- value strip ---------- */
+  .values{padding:54px 0;border-bottom:1px solid var(--line);}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
+  .value h3{font-size:19px;margin-bottom:7px;}
+  .value p{color:var(--muted);font-size:15.5px;}
+  .value .ic{font-size:22px;color:var(--brass);margin-bottom:10px;}
+
+  /* ---------- section heads ---------- */
+  section{scroll-margin-top:84px;}
+  .sec-pad{padding:84px 0;}
+  .sec-head{max-width:640px;margin-bottom:46px;}
+  .sec-head h2{font-size:clamp(30px,4.4vw,46px);margin:14px 0 16px;}
+  .sec-head p{color:var(--muted);font-size:17px;}
+
+  /* ---------- property cards ---------- */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:var(--shadow);
+    transition:transform .22s ease,box-shadow .22s ease;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 1px 2px rgba(27,42,31,.06),0 26px 50px -18px rgba(27,42,31,.30);}
+  .card-media{
+    position:relative;aspect-ratio:16/10;background-size:cover;background-position:center;
+    background-color:var(--green-deep);
+    background-image:linear-gradient(135deg,#33503e,#223a2c);
+  }
+  .card-media .placeholder{
+    position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+    color:rgba(255,255,255,.5);font-size:13px;letter-spacing:.04em;padding:0 20px;
+  }
+  /* brass key-tag signature — grounded in the "No3 / Rhönstr." naming */
+  .tag{
+    position:absolute;top:16px;left:16px;z-index:2;
+    display:inline-flex;align-items:center;gap:.5em;
+    background:linear-gradient(150deg,var(--brass-light),var(--brass));
+    color:#3a2c12;font-weight:700;font-size:13px;letter-spacing:.05em;
+    padding:7px 13px;border-radius:8px;
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.55),inset 0 -1px 2px rgba(0,0,0,.22),0 4px 10px rgba(0,0,0,.18);
+  }
+  .tag::before{content:"";width:7px;height:7px;border-radius:50%;background:#3a2c12;opacity:.55;box-shadow:0 0 0 2px rgba(58,44,18,.25);}
+  .card-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1;}
+  .card-loc{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--brass);text-transform:uppercase;}
+  .card h3{font-size:24px;margin:6px 0 10px;}
+  .card-desc{color:var(--muted);font-size:15.5px;flex:1;}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px;}
+  .facts span{
+    font-size:13px;font-weight:500;color:var(--ink);background:var(--paper);
+    border:1px solid var(--line);border-radius:999px;padding:5px 12px;
+  }
+  .card-actions{display:flex;gap:10px;align-items:center;}
+
+  /* ---------- region ---------- */
+  .region{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .region-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;}
+  .region h2{font-size:clamp(28px,4vw,42px);margin:14px 0 18px;}
+  .region p{color:var(--muted);margin-bottom:16px;}
+  .region-aside{
+    background:linear-gradient(160deg,var(--green),var(--green-deep));border-radius:18px;padding:34px;color:var(--paper-2);
+  }
+  .region-aside h3{color:#fff;font-size:22px;margin-bottom:14px;}
+  .region-aside ul{list-style:none;padding:0;margin:0;}
+  .region-aside li{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid rgba(246,247,242,.14);font-size:15px;color:rgba(246,247,242,.86);}
+  .region-aside li:last-child{border-bottom:0;}
+  .region-aside li b{color:var(--brass-light);font-weight:600;}
+
+  /* ---------- contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .contact-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:var(--shadow);}
+  .contact-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .contact-row:last-child{border-bottom:0;}
+  .contact-row .ic{width:42px;height:42px;border-radius:11px;background:var(--paper);display:grid;place-items:center;font-size:19px;flex:none;}
+  .contact-row small{display:block;color:var(--muted);font-size:13px;}
+  .contact-row a,.contact-row span{font-weight:600;font-size:16px;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:rgba(246,247,242,.72);padding:50px 0 30px;}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;align-items:flex-start;margin-bottom:34px;}
+  .foot-top .brand{color:#fff;}
+  footer nav{display:flex;gap:26px;flex-wrap:wrap;}
+  footer nav a{font-size:14.5px;color:rgba(246,247,242,.72);transition:color .15s;}
+  footer nav a:hover{color:#fff;}
+  .foot-bottom{border-top:1px solid rgba(246,247,242,.14);padding-top:22px;font-size:13px;color:rgba(246,247,242,.5);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- booking modal ---------- */
+  .modal{position:fixed;inset:0;z-index:100;display:none;}
+  .modal.open{display:block;}
+  .modal-backdrop{position:absolute;inset:0;background:rgba(20,30,22,.55);backdrop-filter:blur(3px);}
+  .modal-panel{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:min(720px,94vw);max-height:90vh;overflow:auto;background:var(--paper-2);
+    border-radius:18px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);
+  }
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper-2);}
+  .modal-head h3{font-size:21px;}
+  .modal-head small{color:var(--muted);font-size:13px;display:block;margin-top:2px;font-family:var(--body);}
+  .modal-close{background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);padding:4px 8px;}
+  .modal-body{padding:22px 24px 28px;min-height:240px;}
+  .setup-note{
+    border:1px dashed var(--brass);background:rgba(169,133,74,.07);border-radius:12px;
+    padding:20px 22px;color:var(--ink);font-size:14.5px;line-height:1.6;
+  }
+  .setup-note b{color:var(--brass);}
+  .setup-note code{background:var(--paper);padding:2px 6px;border-radius:5px;font-size:13px;}
+
+  /* ---------- reveal anim ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:860px){
+    .nav-links{
+      position:absolute;top:68px;left:0;right:0;background:var(--paper);
+      flex-direction:column;align-items:flex-start;gap:0;padding:8px 24px 20px;
+      border-bottom:1px solid var(--line);display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--line);}
+    .nav-links .btn{margin-top:12px;}
+    .nav-toggle{display:block;}
+    .values-grid{grid-template-columns:1fr;gap:26px;}
+    .cards{grid-template-columns:1fr;}
+    .region-grid,.contact-grid{grid-template-columns:1fr;gap:34px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><span class="key">F</span>Fuldastay</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#unterkuenfte">Unterkünfte</a>
+      <a href="#region">Region</a>
+      <a href="#kontakt">Kontakt</a>
+      <button class="btn btn-primary" onclick="openBooking('all','Alle Unterkünfte')">Direkt buchen</button>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <span class="eyebrow" style="color:var(--brass-light)">Fulda · Birstein · Direktbuchung</span>
+    <h1>Ankommen in Fulda.<br><em>Direkt</em> beim Gastgeber.</h1>
+    <p class="lead">Vier sorgfältig eingerichtete Unterkünfte in Fulda und im Vogelsberg. Buchen Sie direkt bei uns – ohne Portalgebühren, mit sofortiger Bestätigung und persönlichem Kontakt per WhatsApp.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#unterkuenfte">Unterkünfte ansehen</a>
+      <button class="btn btn-ghost" onclick="openBooking('all','Alle Unterkünfte')">Verfügbarkeit &amp; Preise</button>
+    </div>
+    <div class="hero-trust">
+      <div><b>0 %</b>Provision – Sie buchen direkt, ohne Portalaufschlag.</div>
+      <div><b>4</b>Unterkünfte in Fulda &amp; Birstein.</div>
+      <div><b>24/7</b>Persönlicher Draht zum Gastgeber per WhatsApp.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
+<section class="values">
+  <div class="wrap values-grid">
+    <div class="value reveal">
+      <div class="ic">◷</div>
+      <h3>Sofort bestätigt</h3>
+      <p>Live-Verfügbarkeit direkt aus unserem Kalender – Ihre Buchung ist in Sekunden bestätigt, ohne Wartezeit.</p>
+    </div>
+    <div class="value reveal">
+      <div class="ic">⌂</div>
+      <h3>Besserer Preis</h3>
+      <p>Keine Portalgebühren bedeutet faire Preise für Sie und einen direkten Draht zu uns als Gastgeber.</p>
+    </div>
+    <div class="value reveal">
+      <div class="ic">✦</div>
+      <h3>Persönlich betreut</h3>
+      <p>Dennis &amp; Necla kümmern sich persönlich – Fragen zu Anreise, Check-in oder Tipps gern jederzeit per WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UNTERKÜNFTE ============ -->
+<section class="sec-pad" id="unterkuenfte">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Unsere Unterkünfte</span>
+      <h2>Für jeden Aufenthalt das Richtige</h2>
+      <p>Vom kompakten Studio im Zentrum bis zum Haus mit Sauna und Pool im Vogelsberg. Wählen Sie Ihre Unterkunft und prüfen Sie direkt die Verfügbarkeit.</p>
+    </div>
+
+    <div class="cards">
+
+      <!-- Studio No3 -->
+      <article class="card reveal">
+        <div class="card-media" data-img="images/studio.jpeg">
+          <span class="tag">S·3</span>
+          <div class="placeholder">Foto einfügen → <code>data-img="BILD-URL"</code></div>
+        </div>
+        <div class="card-body">
+          <span class="card-loc">Fulda · Zentrum</span>
+          <h3>Studio No 3</h3>
+          <p class="card-desc">Kompaktes, helles Studio mitten in Fulda – ideal für Städtereisen, Geschäftsreisen und Paare. Alles fußläufig erreichbar.</p>
+          <div class="facts"><span>2 Gäste</span><span>Studio</span><span>Zentrale Lage</span><span>Self-Check-in</span></div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openBooking('studio','Studio No 3')">Verfügbarkeit &amp; buchen</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Apartment No3 -->
+      <article class="card reveal">
+        <div class="card-media" data-img="images/apartment.jpeg">
+          <span class="tag">A·3</span>
+          <div class="placeholder">Foto einfügen → <code>data-img="BILD-URL"</code></div>
+        </div>
+        <div class="card-body">
+          <span class="card-loc">Fulda</span>
+          <h3>Apartment No 3</h3>
+          <p class="card-desc">Geräumiges Apartment mit voll ausgestatteter Küche – passend für Familien und längere Aufenthalte. Wohnen wie zu Hause.</p>
+          <div class="facts"><span>4 Gäste</span><span>Küche</span><span>WLAN</span><span>Self-Check-in</span></div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openBooking('apartment','Apartment No 3')">Verfügbarkeit &amp; buchen</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Loft -->
+      <article class="card reveal">
+        <div class="card-media" data-img="images/loft.jpg">
+          <span class="tag">LOFT</span>
+          <div class="placeholder">Foto einfügen → <code>data-img="BILD-URL"</code></div>
+        </div>
+        <div class="card-body">
+          <span class="card-loc">Fulda · Rhönstraße 6</span>
+          <h3>Loft in der Innenstadt</h3>
+          <p class="card-desc">Stilvolles Loft im Herzen Fuldas – offener Wohnraum, viel Licht und alles in Laufnähe. Perfekt für ein Wochenende in der Barockstadt.</p>
+          <div class="facts"><span>4 Gäste</span><span>Loft-Charakter</span><span>Innenstadt</span><span>WLAN</span></div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openBooking('loft','Loft in der Innenstadt')">Verfügbarkeit &amp; buchen</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Birstein -->
+      <article class="card reveal">
+        <div class="card-media" data-img="images/birstein.jpeg">
+          <span class="tag">BIRSTEIN</span>
+          <div class="placeholder">Foto einfügen → <code>data-img="BILD-URL"</code></div>
+        </div>
+        <div class="card-body">
+          <span class="card-loc">Birstein · Vogelsberg</span>
+          <h3>Haus mit Sauna &amp; Pool</h3>
+          <p class="card-desc">Besonderes Nurdachhaus mit Sauna und Pool – Rückzugsort im Grünen für Gruppen, Familien und alle, die Ruhe und Natur suchen.</p>
+          <div class="facts"><span>Sauna</span><span>Pool</span><span>Im Grünen</span><span>Für Gruppen</span></div>
+          <div class="card-actions">
+            <button class="btn btn-primary" onclick="openBooking('birstein','Haus mit Sauna &amp; Pool')">Verfügbarkeit &amp; buchen</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGION ============ -->
+<section class="region sec-pad" id="region">
+  <div class="wrap region-grid">
+    <div class="reveal">
+      <span class="eyebrow">Die Region</span>
+      <h2>Barockstadt Fulda, Rhön &amp; Vogelsberg</h2>
+      <p>Fulda verbindet eine kompakte, gut erreichbare Innenstadt mit barockem Charme – Dom, Stadtschloss und Schlossgarten liegen nur wenige Schritte voneinander entfernt. Ein idealer Ausgangspunkt für ein Wochenende oder eine Geschäftsreise – und das Tor zur Rhön, wenn es Sie zum Wandern in die Natur zieht.</p>
+      <p>Etwas abseits, im Vogelsberg, liegt unser besonderes Haus in Birstein – mit Sauna und Pool, umgeben von Wald und Ruhe. Ein eigener Rückzugsort, klar getrennt vom Trubel der Stadt.</p>
+    </div>
+    <aside class="region-aside reveal">
+      <h3>Gut zu wissen</h3>
+      <ul>
+        <li><b>5 Min.</b><span>vom Studio &amp; Loft zum Fuldaer Dom</span></li>
+        <li><b>ICE</b><span>Fulda liegt an der Schnellfahrstrecke Frankfurt–Berlin</span></li>
+        <li><b>Vogelsberg</b><span>Wald &amp; Ruhe rund um Birstein</span></li>
+        <li><b>WhatsApp</b><span>Tipps zu Anreise &amp; Umgebung direkt vom Gastgeber</span></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="sec-pad" id="kontakt">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Kontakt</span>
+      <h2 style="font-size:clamp(28px,4vw,42px);margin:14px 0 16px;">Fragen vor der Buchung?</h2>
+      <p style="color:var(--muted);">Schreiben Sie uns einfach – am schnellsten per WhatsApp. Dennis &amp; Necla antworten persönlich und helfen bei Anreise, Check-in oder der Wahl der passenden Unterkunft.</p>
+    </div>
+    <div class="contact-card reveal">
+      <a class="contact-row" id="waRow" href="#" target="_blank" rel="noopener">
+        <span class="ic">✆</span>
+        <span><small>WhatsApp</small>Direkt schreiben</span>
+      </a>
+      <a class="contact-row" id="mailRow" href="#">
+        <span class="ic">✉</span>
+        <span><small>E-Mail</small><span id="mailText">—</span></span>
+      </a>
+      <div class="contact-row">
+        <span class="ic">⌂</span>
+        <span><small>Gastgeber</small>Dennis &amp; Necla · Fuldastay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="#top"><span class="key">F</span>Fuldastay</a>
+        <p style="margin-top:12px;max-width:340px;font-size:14.5px;">Direktbuchung von Unterkünften in Fulda und Birstein. Persönlich betreut, fair im Preis.</p>
+      </div>
+      <nav>
+        <a href="#unterkuenfte">Unterkünfte</a>
+        <a href="#region">Region</a>
+        <a href="#kontakt">Kontakt</a>
+        <!-- DSGVO: Impressum & Datenschutz sind in Deutschland Pflicht. Links eintragen. -->
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Fuldastay</span>
+      <span>Direktbuchung über Smoobu · ohne Portalgebühren</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOOKING MODAL ============ -->
+<div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" onclick="closeBooking()"></div>
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalTitle">Verfügbarkeit &amp; Buchung</h3>
+        <small>Live-Kalender &amp; Preise direkt aus Smoobu</small>
+      </div>
+      <button class="modal-close" onclick="closeBooking()" aria-label="Schließen">×</button>
+    </div>
+    <div class="modal-body" id="bookingBody"></div>
+  </div>
+</div>
+
+<script>
+/* ===================================================================
+   FULDASTAY – KONFIGURATION
+   Hier trägst du nur deine echten Smoobu-Werte ein. Sonst nichts ändern.
+
+   1) settingsId:
+      Smoobu öffnen → Einstellungen → Buchungssystem → "In Website integrieren".
+      Im HTML-Code steht eine URL wie:
+        .../booking-tool/iframe/123456789/...
+      Die Zahl direkt nach "iframe/" (hier 123456789) ist deine settingsId.
+
+   2) apartments:
+      Die IDs unten sind deine bekannten Smoobu-Objekt-IDs. BITTE PRÜFEN:
+      Im selben Bereich pro Unterkunft den Einbettungs-Code anzeigen lassen,
+      die Zahl nach "iframe/<settingsId>/HIER" ist die Apartment-ID.
+      Birstein-ID musst du noch nachtragen.
+
+   3) WICHTIG: Damit ein echtes BUCHUNGS-Formular (statt nur Anfrage)
+      erscheint, müssen in Smoobu unter "Preise" Raten hinterlegt sein.
+   =================================================================== */
+const CONFIG = {
+  smoobu: {
+    settingsId: "1588231",              // ✅ deine Smoobu Settings-ID
+    lang: "de",
+    apartments: {
+      studio:    "3099371",             // ✅ Studio No 3
+      apartment: "3099376",             // ✅ Apartment No 3
+      loft:      "3099381",             // ✅ Loft
+      birstein:  "3099386"             // ✅ Nurdachhaus Birstein
+    }
+  },
+  contact: {
+    whatsapp: "4915206740733",          // Format ohne + und ohne 00 (prüfen / anpassen)
+    email:    "fuldastay@gmail.com"
+  }
+};
+
+/* ---- Kontaktdaten in die Seite schreiben ---- */
+(function(){
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var wa = document.getElementById('waRow');
+  wa.href = "https://wa.me/" + CONFIG.contact.whatsapp;
+  var mail = document.getElementById('mailRow');
+  mail.href = "mailto:" + CONFIG.contact.email;
+  document.getElementById('mailText').textContent = CONFIG.contact.email;
+})();
+
+/* ---- Foto-Platzhalter durch echte Bilder ersetzen (data-img) ---- */
+document.querySelectorAll('.card-media[data-img]').forEach(function(el){
+  var url = el.getAttribute('data-img');
+  if(url){
+    el.style.backgroundImage = "url('"+url+"')";
+    var ph = el.querySelector('.placeholder'); if(ph) ph.remove();
+  }
+});
+
+/* ---- Mobile-Navigation ---- */
+(function(){
+  var t = document.getElementById('navToggle');
+  var l = document.getElementById('navLinks');
+  t.addEventListener('click', function(){ l.classList.toggle('open'); });
+  l.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ l.classList.remove('open'); }); });
+})();
+
+/* ---- Scroll-Reveal ---- */
+(function(){
+  if(!('IntersectionObserver' in window)){ document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(e){ io.observe(e); });
+})();
+
+/* ===================================================================
+   SMOOBU BUCHUNGSWIDGET
+   =================================================================== */
+var smoobuLoaded = false;
+function ensureSmoobu(cb){
+  if(window.BookingToolIframe){ cb(); return; }
+  if(smoobuLoaded){ var i=setInterval(function(){ if(window.BookingToolIframe){clearInterval(i);cb();} },150); return; }
+  smoobuLoaded = true;
+  var s = document.createElement('script');
+  s.src = "https://login.smoobu.com/js/Settings/BookingToolIframe.js";
+  s.onload = cb;
+  s.onerror = function(){ showSmoobuError(); };
+  document.head.appendChild(s);
+}
+
+function openBooking(key, name){
+  var modal = document.getElementById('bookingModal');
+  var body  = document.getElementById('bookingBody');
+  document.getElementById('modalTitle').innerHTML = "Buchen — " + name;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  body.innerHTML = "";
+
+  var c = CONFIG.smoobu;
+  var notConfigured = (c.settingsId === "SETTINGS_ID" || !c.settingsId);
+  var aptId = (key === 'all') ? null : c.apartments[key];
+  var aptMissing = (key !== 'all') && (!aptId || aptId === "BIRSTEIN_ID");
+
+  if(notConfigured || aptMissing){
+    body.innerHTML = setupNote(notConfigured, key, aptId);
+    return;
+  }
+
+  var targetId = "smoobu-target";
+  body.innerHTML = '<div id="'+targetId+'"></div>';
+  var url = "https://login.smoobu.com/"+c.lang+"/booking-tool/iframe/"+c.settingsId + (aptId ? ("/"+aptId) : "");
+
+  ensureSmoobu(function(){
+    try{
+      window.BookingToolIframe.initialize({
+        "url": url,
+        "baseUrl": "https://login.smoobu.com",
+        "target": "#"+targetId
+      });
+    }catch(e){ showSmoobuError(); }
+  });
+}
+
+function setupNote(notConfigured, key, aptId){
+  return '<div class="setup-note">'
+    + '<b>Fast fertig — Smoobu noch verbinden.</b><br><br>'
+    + (notConfigured
+        ? 'Trage im Code ganz oben unter <code>CONFIG.smoobu.settingsId</code> deine echte Settings-ID ein. Du findest sie in Smoobu unter <b>Einstellungen → Buchungssystem → In Website integrieren</b> (die Zahl nach <code>iframe/</code>).<br><br>'
+        : '')
+    + ((key==='birstein' && (!aptId || aptId==='BIRSTEIN_ID'))
+        ? 'Für <b>Birstein</b> fehlt noch die Apartment-ID unter <code>CONFIG.smoobu.apartments.birstein</code>.<br><br>'
+        : '')
+    + 'Sobald die Werte stehen, erscheint hier automatisch der Live-Kalender mit Preisen und ein echtes Buchungsformular.'
+    + '</div>';
+}
+function showSmoobuError(){
+  document.getElementById('bookingBody').innerHTML =
+    '<div class="setup-note">Das Buchungswidget konnte nicht geladen werden. '
+    + 'Im Vorschau-Modus blockieren manche Umgebungen externe Skripte — '
+    + 'auf deiner gehosteten Seite funktioniert es normal. Alternativ: '
+    + '<a href="https://wa.me/'+CONFIG.contact.whatsapp+'" target="_blank" rel="noopener"><b>per WhatsApp anfragen</b></a>.</div>';
+}
+function closeBooking(){
+  document.getElementById('bookingModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeBooking(); });
+</script>
+</body>
+</html>
